@@ -1,0 +1,23 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>Список ресторанов</h2>
+  <form method="get" action="{% url 'restaurant_search' %}">
+    <input type="text" name="q" placeholder="Поиск ресторанов">
+    <button type="submit">Найти</button>
+  </form>
+  <ul>
+    {% for restaurant in restaurantes %}
+      <li>
+        <a href="{% url 'restaurant_detail' restaurant.pk %}">{{ restaurant.name }}</a>
+        <a href="{% url 'restaurant_update' restaurant.pk %}">
+          <button type="button">Изменить</button>
+        </a>
+        <a href="{% url 'restaurant_delete' restaurant.pk %}">
+          <button type="button">Удалить</button>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'restaurant_create' %}">Добавить новый ресторан</a>
+{% endblock %}

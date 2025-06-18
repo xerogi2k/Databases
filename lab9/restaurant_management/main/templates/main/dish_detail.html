@@ -1,0 +1,11 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>{{ dish.dish_name }}</h2>
+  <p>Description: {{ dish.description }}</p>
+  <p>Preparation time: {{ dish.preparation_time }} minutes</p>
+  <p>Calories: {{ dish.calories }}</p>
+  <a href="{% url 'dish_list' %}">
+      <button type="button">Вернуться к списку блюд</button>
+  </a>
+{% endblock %}

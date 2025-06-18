@@ -1,0 +1,23 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>Список поваров</h2>
+  <form method="get" action="{% url 'cook_search' %}">
+    <input type="text" name="q" placeholder="Поиск поваров">
+    <button type="submit">Найти</button>
+  </form>
+  <ul>
+    {% for cook in cooks %}
+      <li>
+        <a href="{% url 'cook_detail' cook.pk %}">{{ cook.chef_name }}</a>
+        <a href="{% url 'cook_update' cook.pk %}">
+          <button type="button">Изменить</button>
+        </a>
+        <a href="{% url 'cook_delete' cook.pk %}">
+          <button type="button">Удалить</button>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'cook_create' %}">Добавить нового повара</a>
+{% endblock %}

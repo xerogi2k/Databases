@@ -1,0 +1,11 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>{{ supplier.supplier_name }}</h2>
+  <p>Contact Person: {{ supplier.contact_person }}</p>
+  <p>Phone Number: {{ supplier.phone_number }}</p>
+  <p>Email: {{ supplier.email }}</p>
+  <a href="{% url 'supplier_list' %}">
+      <button type="button">Вернуться к списку поставщиков</button>
+  </a>
+{% endblock %}

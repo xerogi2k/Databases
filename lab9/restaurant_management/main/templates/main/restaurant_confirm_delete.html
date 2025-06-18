@@ -1,0 +1,13 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>Удаление ресторана</h2>
+  <p>Вы уверены, что хотите удалить ресторан "{{ restaurant.name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+    <a href="{% url 'restaurant_list' %}">
+        <button type="button">Нет, вернуться назад</button>
+    </a>
+  </form>
+{% endblock %}

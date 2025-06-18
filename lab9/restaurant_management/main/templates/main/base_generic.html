@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Менеджмент ресторанов{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Менеджмент ресторанов</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'cook_list' %}">Cooks</a></li>
+            <li><a href="{% url 'dish_list' %}">Dishes</a></li>
+            <li><a href="{% url 'supplier_list' %}">Suppliers</a></li>
+            <li><a href="{% url 'product_list' %}">Products</a></li>
+            <li><a href="{% url 'recipe_list' %}">Recipes</a></li>
+            <li><a href="{% url 'restaurant_list' %}">Restaurants</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

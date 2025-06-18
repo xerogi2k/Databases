@@ -1,0 +1,11 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>{{ restaurant.name }}</h2>
+  <p>Cuisine: {{ restaurant.cuisine }}</p>
+  <p>Rating: {{ restaurant.rating }}</p>
+  <p>Address: {{ restaurant.address.street }}, {{ restaurant.address.city }}, {{ restaurant.address.state }}, {{ restaurant.address.zip }}</p>
+  <a href="{% url 'restaurant_list' %}">
+      <button type="button">Вернуться к списку ресторанов</button>
+  </a>
+{% endblock %}

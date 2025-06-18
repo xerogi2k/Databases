@@ -1,0 +1,23 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>Список рецептов</h2>
+  <form method="get" action="{% url 'recipe_search' %}">
+    <input type="text" name="q" placeholder="Поиск рецептов">
+    <button type="submit">Найти</button>
+  </form>
+  <ul>
+    {% for recipe in recipees %}
+      <li>
+        <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.dish.dish_name }}</a>
+        <a href="{% url 'recipe_update' recipe.pk %}">
+          <button type="button">Изменить</button>
+        </a>
+        <a href="{% url 'recipe_delete' recipe.pk %}">
+          <button type="button">Удалить</button>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'recipe_create' %}">Добавить новый рецепт</a>
+{% endblock %}

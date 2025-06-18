@@ -1,0 +1,13 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>{{ product.product_name }}</h2>
+  <p>Category: {{ product.category }}</p>
+  <p>Quantity in stock: {{ product.quantity_in_stock }}</p>
+  <p>Price: ${{ product.price }}</p>
+  <p>Supplier: {{ product.supplier.supplier_name }}</p>
+  <p>Ingredients: {{ product.ingredients }}</p>
+  <a href="{% url 'product_list' %}">
+      <button type="button">Вернуться к списку продуктов</button>
+  </a>
+{% endblock %}

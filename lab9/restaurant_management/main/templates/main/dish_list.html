@@ -1,0 +1,23 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>Список блюд</h2>
+  <form method="get" action="{% url 'dish_search' %}">
+    <input type="text" name="q" placeholder="Поиск блюд">
+    <button type="submit">Найти</button>
+  </form>
+  <ul>
+    {% for dish in dishes %}
+      <li>
+        <a href="{% url 'dish_detail' dish.pk %}">{{ dish.dish_name }}</a>
+        <a href="{% url 'dish_update' dish.pk %}">
+          <button type="button">Изменить</button>
+        </a>
+        <a href="{% url 'dish_delete' dish.pk %}">
+          <button type="button">Удалить</button>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'dish_create' %}">Добавить новое блюдо</a>
+{% endblock %}

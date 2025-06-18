@@ -1,0 +1,11 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>{{ cook.chef_name }}</h2>
+  <p>Experience: {{ cook.experience_years }}</p>
+  <p>Speciality: {{ cook.speciality }}</p>
+  <p>Location: {{ cook.location }}</p>
+  <a href="{% url 'cook_list' %}">
+      <button type="button">Вернуться к списку поваров</button>
+  </a>
+{% endblock %}

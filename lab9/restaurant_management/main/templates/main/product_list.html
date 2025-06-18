@@ -1,0 +1,23 @@
+{% extends "main/base_generic.html" %}
+
+{% block content %}
+  <h2>Список продуктов</h2>
+  <form method="get" action="{% url 'product_search' %}">
+    <input type="text" name="q" placeholder="Поиск продуктов">
+    <button type="submit">Найти</button>
+  </form>
+  <ul>
+    {% for product in products %}
+      <li>
+        <a href="{% url 'product_detail' product.pk %}">{{ product.product_name }}</a>
+        <a href="{% url 'product_update' product.pk %}">
+          <button type="button">Изменить</button>
+        </a>
+        <a href="{% url 'product_delete' product.pk %}">
+          <button type="button">Удалить</button>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'product_create' %}">Добавить новый продукт</a>
+{% endblock %}
