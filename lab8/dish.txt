@@ -1,0 +1,210 @@
+// Коллекция для поваров
+db.createCollection("cooks", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["chef_name", "experience_years", "speciality", "location"],
+            properties: {
+                chef_name: {
+                    bsonType: "string",
+                    description: "Имя повара"
+                },
+                experience_years: {
+                    bsonType: "int",
+                    minimum: 0,
+                    description: "Количество лет опыта"
+                },
+                speciality: {
+                    bsonType: "string",
+                    description: "Специализация повара"
+                },
+                location: {
+                    bsonType: "string",
+                    description: "Место работы повара"
+                }
+            }
+        }
+    }
+});
+
+// Коллекция для блюд
+db.createCollection("dishes", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["dish_name", "description", "preparation_time", "calories", "cook_id"],
+            properties: {
+                dish_name: {
+                    bsonType: "string",
+                    description: "Название блюда"
+                },
+                description: {
+                    bsonType: "string",
+                    description: "Описание блюда"
+                },
+                preparation_time: {
+                    bsonType: "int",
+                    minimum: 1,
+                    description: "Время подготовки в минутах"
+                },
+                calories: {
+                    bsonType: "int",
+                    minimum: 0,
+                    description: "Калорийность блюда"
+                },
+                cook_id: {
+                    bsonType: "objectId",
+                    description: "Идентификатор повара, приготовившего блюдо"
+                }
+            }
+        }
+    }
+});
+
+// Коллекция для поставщиков
+db.createCollection("suppliers", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["supplier_name", "contact_person", "phone_number", "email"],
+            properties: {
+                supplier_name: {
+                    bsonType: "string",
+                    description: "Название компании-поставщика"
+                },
+                contact_person: {
+                    bsonType: "string",
+                    description: "Контактное лицо в компании-поставщике"
+                },
+                phone_number: {
+                    bsonType: "string",
+                    description: "Телефонный номер поставщика"
+                },
+                email: {
+                    bsonType: "string",
+                    description: "Электронная почта поставщика"
+                }
+            }
+        }
+    }
+});
+
+// Коллекция для продуктов
+db.createCollection("products", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["product_name", "category", "quantity_in_stock", "price", "supplier_id", "ingredients"],
+            properties: {
+                product_name: {
+                    bsonType: "string",
+                    description: "Название продукта"
+                },
+                category: {
+                    bsonType: "string",
+                    description: "Категория продукта"
+                },
+                quantity_in_stock: {
+                    bsonType: "int",
+                    minimum: 0,
+                    description: "Количество продукта на складе"
+                },
+                price: {
+                    bsonType: "double",
+                    minimum: 0.0,
+                    description: "Цена продукта"
+                },
+                supplier_id: {
+                    bsonType: "objectId",
+                    description: "Идентификатор поставщика продукта"
+                },
+                ingredients: {
+                    bsonType: "array",
+                    items: {
+                        bsonType: "string"
+                    },
+                    description: "Список ингредиентов продукта"
+                }
+            }
+        }
+    }
+});
+
+
+// Коллекция для рецептов
+db.createCollection("recipes", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["dish_id", "product_id", "quantity", "unit"],
+            properties: {
+                dish_id: {
+                    bsonType: "objectId",
+                    description: "Идентификатор блюда, для которого предназначен рецепт"
+                },
+                product_id: {
+                    bsonType: "objectId",
+                    description: "Идентификатор продукта, используемого в рецепте"
+                },
+                quantity: {
+                    bsonType: "double",
+                    minimum: 0.01,
+                    description: "Количество продукта, необходимое для рецепта"
+                },
+                unit: {
+                    bsonType: "string",
+                    description: "Единица измерения количества продукта",
+                    enum: ["граммы", "миллилитры", "штуки", "чайные ложки", "столовые ложки"]
+                }
+            }
+        }
+    }
+});
+
+// Коллекция для ресторанов
+db.createCollection("restaurants", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name", "cuisine", "address"],
+            properties: {
+                name: {
+                    bsonType: "string",
+                    description: "Название ресторана"
+                },
+                cuisine: {
+                    bsonType: "string",
+                    description: "Тип кухни ресторана"
+                },
+                rating: {
+                    bsonType: "int",
+                    minimum: 1,
+                    maximum: 5,
+                    description: "Рейтинг ресторана от 1 до 5"
+                },
+                address: {
+                    bsonType: "object",
+                    required: ["street", "city", "state", "zip"],
+                    properties: {
+                        street: {
+                            bsonType: "string",
+                            description: "Улица, на которой расположен ресторан"
+                        },
+                        city: {
+                            bsonType: "string",
+                            description: "Город, в котором расположен ресторан"
+                        },
+                        state: {
+                            bsonType: "string",
+                            description: "Штат, в котором расположен ресторан"
+                        },
+                        zip: {
+                            bsonType: "string",
+                            description: "Почтовый индекс ресторана"
+                        }
+                    }
+                }
+            }
+        }
+    }
+});
